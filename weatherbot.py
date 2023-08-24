@@ -29,7 +29,7 @@ def get_weather(message):
             parse_mode='html'
             )
     else:
-        bot.reply_to(message, '<b>Город указан не верно!</b>')
+        bot.reply_to(message, '<b>Город указан не верно!</b>', parse_mode='html')
 
 
 bot.infinity_polling()
