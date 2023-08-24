@@ -30,3 +30,6 @@ def get_weather(message):
             )
     else:
         bot.reply_to(message, 'Город указан не верно')
+
+
+bot.infinity_polling()
