@@ -21,11 +21,11 @@ def get_weather(message):
         pressure = data["main"]["pressure"]
         humidity = data["main"]["humidity"]
         bot.reply_to(message,
-            f'Погода в {city_name}'
-            f'Температура: {temp}°C (Ощущается как {feels_like}°C'
-            f'Ветер: {wind}м/с'
-            f'Давление: {pressure}мм.рт.ст'
-            f'Влажность: {humidity}%',
+            f'Погода в {city_name}\n'
+            f'Температура: {temp} °C (Ощущается как {feels_like} °C\n'
+            f'Ветер: {wind} м/с\n'
+            f'Давление: {pressure} мм.рт.ст\n'
+            f'Влажность: {humidity}%\n',
             parse_mode='html'
             )
     else:
