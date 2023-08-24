@@ -7,7 +7,7 @@ api = 'f4a8795027cd6ef2a3376afe27e3ac0d'
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, 'Привет!\nЭто бот для проверки погоды.\nПожалуйста напиши название города.')
+    bot.send_message(message.chat.id, '<b>Привет!\nЭто бот для проверки погоды.</b>\n\n<b><i>Пожалуйста напиши название города.</i></b>')
 
 @bot.message_handler(content_types=['text'])
 def get_weather(message):
@@ -21,15 +21,15 @@ def get_weather(message):
         pressure = data["main"]["pressure"]
         humidity = data["main"]["humidity"]
         bot.reply_to(message,
-            f'Погода в {city_name}\n'
-            f'Температура: {temp} °C (Ощущается как {feels_like} °C\n'
-            f'Ветер: {wind} м/с\n'
-            f'Давление: {pressure} мм.рт.ст\n'
-            f'Влажность: {humidity}%\n',
+            f'<u><b>Погода в {city_name}</b></u>\n'
+            f'<b>Температура:</b> {temp} °C (Ощущается как {feels_like} °C\n'
+            f'<b>Ветер:</b> {wind} м/с\n'
+            f'<b>Давление:</b> {pressure} мм.рт.ст\n'
+            f'<b>Влажность:</b> {humidity}%\n',
             parse_mode='html'
             )
     else:
-        bot.reply_to(message, 'Город указан не верно')
+        bot.reply_to(message, '<b>Город указан не верно!</b>')
 
 
 bot.infinity_polling()
