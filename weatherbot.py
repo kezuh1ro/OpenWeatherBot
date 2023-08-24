@@ -17,8 +17,16 @@ def get_weather(message):
         data = json.loads(url.text)
         temp = data["main"]["temp"]
         feels_like = data["main"]["feels_like"]
-        
+        wind = data["wind"]["speed"]
+        pressure = data["main"]["pressure"]
+        humidity = data["main"]["humidity"]
         bot.reply_to(message,
             f'Погода в {city_name}'
             f'Температура: {temp}°C (Ощущается как {feels_like}°C'
-            f'
+            f'Ветер: {wind}м/с'
+            f'Давление: {pressure}мм.рт.ст'
+            f'Влажность: {humidity}%',
+            parse_mode='html'
+            )
+    else:
+        bot.reply_to(message, 'Город указан не верно')
