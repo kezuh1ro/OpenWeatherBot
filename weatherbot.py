@@ -16,6 +16,9 @@ def get_weather(message):
     if url.status_code == 200:
         data = json.loads(url.text)
         temp = data["main"]["temp"]
+        feels_like = data["main"]["feels_like"]
+        
         bot.reply_to(message,
             f'Погода в {city_name}'
-            f'Температура: {temp}°C'
+            f'Температура: {temp}°C (Ощущается как {feels_like}°C'
+            f'
