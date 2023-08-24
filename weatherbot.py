@@ -11,7 +11,7 @@ def start(message):
 
 @bot.message_handler(content_types=['text'])
 def get_weather(message):
-    city_name = message.text.strip().lower()
+    city_name = message.text.strip()
     url = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}&units=metric')
     if url.status_code == 200:
         data = json.loads(url.text)
