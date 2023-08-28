@@ -5,26 +5,22 @@ import json
 bot = telebot.TeleBot('6664302475:AAHWA1bTpgMEfnQ5N-EWgibdOLvGwod_iqw')
 api = 'f4a8795027cd6ef2a3376afe27e3ac0d'
 
-while True:
-    @bot.message_handler(commands=['start'])
-    def start(message):
-        bot.send_message(message.chat.id, '<b>Привет!\nЭто бот для проверки погоды.</b>\n\n<b><i>Пожалуйста напиши /weather.</i></b>', parse_mode='html')
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id, '<b>Привет!\nЭто бот для проверки погоды.</b>\n\n<b><i>Пожалуйста напиши /weather.</i></b>', parse_mode='html')
 
-    @bot.message_handler(commands=['stop'])
-    def stop(message):
-        break
-    @bot.message_handler(content_types=['text'])
-    def get_weather(message):
-        city_name = message.text.strip()
-        url = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}&units=metric')
-        if url.status_code == 200:
-            data = json.loads(url.text)
-            temp = data["main"]["temp"]
-            feels_like = data["main"]["feels_like"]
-            wind = data["wind"]["speed"]
-            pressure = data["main"]["pressure"]
-            humidity = data["main"]["humidity"]
-            bot.reply_to(message,
+@bot.message_handler(content_types=['text'])
+def get_weather(message):
+    city_name = message.text.strip()
+    url = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}&units=metric')
+    if url.status_code == 200:
+        data = json.loads(url.text)
+        temp = data["main"]["temp"]
+        feels_like = data["main"]["feels_like"]
+        wind = data["wind"]["speed"]
+        pressure = data["main"]["pressure"]
+        humidity = data["main"]["humidity"]
+        bot.reply_to(message,
                 f'<u><b>Погода в {city_name}</b></u>\n'
                 f'<b>Температура:</b> {temp} <b>°C (Ощущается как</b> {feels_like} <b>°C)</b>\n'
                 f'<b>Ветер:</b> {wind} <b>м/с</b>\n'
@@ -32,8 +28,8 @@ while True:
                 f'<b>Влажность:</b> {humidity}<b>%</b>\n',
                 parse_mode='html'
                 )
-        else:
-            bot.reply_to(message, '<b>Город указан не верно!</b>', parse_mode='html')
+    else:
+        bot.reply_to(message, '<b>Город указан не верно!</b>', parse_mode='html')
 
 
 bot.infinity_polling()
