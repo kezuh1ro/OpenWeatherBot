@@ -7,7 +7,7 @@ api = 'f4a8795027cd6ef2a3376afe27e3ac0d'
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, '<b>Привет!\nЭто бот для проверки погоды.</b>\n\n<b><i>Пожалуйста напиши /weather.</i></b>', parse_mode='html')
+    bot.send_message(message.chat.id, '<b>Привет!\nЭто бот для проверки погоды.</b>\n\n<b><i>Пожалуйста напиши название города.</i></b>', parse_mode='html')
 
 @bot.message_handler(content_types=['text'])
 def get_weather(message):
